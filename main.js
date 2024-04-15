@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+#! /usr/bin/env node
 import inquirer from "inquirer";
 let myBalance = 150000; // in Dollor
 let myPin = 1234;
