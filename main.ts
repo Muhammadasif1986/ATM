@@ -13,14 +13,12 @@ let pinAnswer = await inquirer.prompt({
 if (pinAnswer.pin === myPin) {
   console.log("correct pin code");
 
-  let operationAns = await inquirer.prompt([
-    {
-      name: "operation",
-      message: "please select option",
-      type: "list",
-      choices: ["Cash Withdraw", "Check Balance","Fast cash"],
-    },
-  ]);
+  let operationAns = await inquirer.prompt({
+    name: "operation",
+    message: "please select option",
+    type: "list",
+    choices: ["Cash Withdraw", "Check Balance", "Fast cash"],
+  });
 
   if (operationAns.operation === "Cash Withdraw") {
     let amountAns = await inquirer.prompt({
@@ -28,30 +26,28 @@ if (pinAnswer.pin === myPin) {
       message: "Enter your amount",
       type: "number",
     });
-    if(amountAns.amount <= myBalance){
-    let remainBalance = myBalance - amountAns.amount;
-    console.log(
-      `Your remaining balance is ${remainBalance}$\n Thankyou for using this ATM`
-    );}
-    else{
-        console.log("Sorry we can't proceed ! Due to Low Balance!")
+    if (amountAns.amount <= myBalance) {
+      let remainBalance = myBalance - amountAns.amount;
+      console.log(
+        `Your remaining balance is ${remainBalance}$\n Thankyou for using this ATM`
+      );
+    } else {
+      console.log("Sorry we can't proceed ! Due to Low Balance!");
     }
-  } 
-  else if(operationAns.operation === "Fast cash"){
+  } else if (operationAns.operation === "Fast cash") {
     let fastcashAns = await inquirer.prompt([
       {
         name: "fastcash",
         message: "please select amount",
         type: "list",
-        choices: [1000, 2000, 5000,10000],
+        choices: [1000, 2000, 5000, 10000],
       },
     ]);
-    let remBalance = myBalance -fastcashAns.fastcash ;
+    let remBalance = myBalance - fastcashAns.fastcash;
     console.log(
       `Your remaining balance is ${remBalance}$\n Thankyou for using this ATM`
     );
-  }
-  else if (operationAns.operation === "Check Balance") {
+  } else if (operationAns.operation === "Check Balance") {
     console.log(
       `Your current Balance is ${myBalance}$ \n Thankyou for using this ATM`
     );
